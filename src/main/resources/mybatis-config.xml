@@ -6,10 +6,4 @@
         <setting name="lazyLoadingEnabled" value="true"/>
         <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
-    <mappers>
-        <mapper resource="mapper/UserMapper.xml"/>
-        <mapper resource="mapper/PersonMapper.xml"/>
-        <mapper resource="mapper/IdCardMapper.xml"/>
-        <mapper resource="mapper/OrderMapper.xml"/>
-    </mappers>
 </configuration>
