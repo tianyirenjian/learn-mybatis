@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tianyisoft.dao.UserDao">
+    <sql id="limit1">
+        limit 1
+    </sql>
+    <select id="find" parameterType="Integer" resultType="com.tianyisoft.po.User">
+        select * from user where id = #{id} <include refid="limit1"/>
+    </select>
+    <select id="get" resultType="com.tianyisoft.po.User">
+        select * from user
+    </select>
+    <insert id="create" parameterType="com.tianyisoft.po.User">
+        insert into user (id, name, sex) values (#{id}, #{name}, #{sex})
+    </insert>
+    <insert id="createWithoutId" parameterType="com.tianyisoft.po.User" keyProperty="id" useGeneratedKeys="true">
+        insert into user (name, sex) values (#{name}, #{sex})
+    </insert>
+    <update id="update" parameterType="com.tianyisoft.po.User">
+        update user set name = #{name}, sex = #{sex} where id = #{id}
+    </update>
+    <delete id="delete">
+        delete from user where id = #{id}
+    </delete>
+    <select id="byName" resultType="com.tianyisoft.po.User">
+        select * from user where name like concat('%', #{id}, '%')
+    </select>
+    <select id="mapTest" resultType="map">
+        select count(*) as count, sex from user group by sex
+    </select>
+    <resultMap id="pojoResult" type="com.tianyisoft.pojo.UserGroup">
+        <result property="sex" column="sex"/>
+        <result property="count" column="count"/>
+    </resultMap>
+    <select id="pojoTest" resultMap="pojoResult">
+        select count(*) as count, sex from user group by sex
+    </select>
+    <resultMap id="userWithOrders" type="com.tianyisoft.po.User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <collection property="orderList" ofType="com.tianyisoft.po.Order" column="id" select="com.tianyisoft.dao.OrderDao.findByUserId"/>
+    </resultMap>
+    <select id="findWithOrders" resultMap="userWithOrders">
+        select * from user where id = #{id}
+    </select>
+    <resultMap id="userWithOrders2" type="com.tianyisoft.po.User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <collection property="orderList" ofType="com.tianyisoft.po.Order">
+            <id property="id" column="order_id"/>
+            <result property="sn" column="sn"/>
+        </collection>
+    </resultMap>
+    <select id="findWithOrders2" resultMap="userWithOrders2">
+        select u.*, o.id as order_id, o.sn from user u, `order` o where u.id = o.user_id and u.id = #{id}
+    </select>
+
+    <resultMap id="userWithOrders3" type="com.tianyisoft.pojo.SelectUserWithOrders">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <collection property="orderList" ofType="com.tianyisoft.pojo.Order">
+            <id property="id" column="order_id"/>
+            <result property="sn" column="sn"/>
+        </collection>
+    </resultMap>
+    <select id="findWithOrders3" resultMap="userWithOrders3">
+        select u.*, o.id as order_id, o.sn from user u, `order` o where u.id = o.user_id and u.id = #{id}
+    </select>
+    <select id="findWithOrders4" resultType="com.tianyisoft.pojo.UserWithOrders">
+        select u.*, o.id as order_id, o.sn from user u, `order` o where u.id = o.user_id and u.id = #{id}
+    </select>
+</mapper>
