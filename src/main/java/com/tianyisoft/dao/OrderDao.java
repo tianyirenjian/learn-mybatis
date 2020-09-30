@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 @Mapper
 public interface OrderDao {
-    public Order findByUserId(Integer id);
-    public List<Order> orderWithProducts();
+    Order findByUserId(Integer id);
+    List<Order> orderWithProducts();
 }

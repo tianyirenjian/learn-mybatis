@@ -1,5 +1,6 @@
 package com.tianyisoft;
 
+import com.tianyisoft.controller.DynamicSqlController;
 import com.tianyisoft.controller.ManyToManyController;
 import com.tianyisoft.controller.OneToOneController;
 import com.tianyisoft.controller.UserController;
@@ -16,7 +17,9 @@ public class Application {
         // uc.execute();
         // OneToOneController oto = ctx.getBean(OneToOneController.class);
         // oto.test();
-        ManyToManyController mtm = ctx.getBean(ManyToManyController.class);
-        mtm.test();
+        // ManyToManyController mtm = ctx.getBean(ManyToManyController.class);
+        // mtm.test();
+        DynamicSqlController dsc = ctx.getBean(DynamicSqlController.class);
+        dsc.test();
     }
 }

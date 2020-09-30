@@ -13,18 +13,18 @@ import java.util.Map;
 @Repository
 @Mapper
 public interface UserDao {
-    public User find(Integer id);
-    public List<User> get();
-    public int create(User user);
-    public int createWithoutId(User user);
-    public int update(User user);
-    public int delete(Integer id);
+    User find(Integer id);
+    List<User> get();
+    int create(User user);
+    int createWithoutId(User user);
+    int update(User user);
+    int delete(Integer id);
 
-    public List<User> byName(String name);
-    public List<Map<String, Object>> mapTest();
-    public List<UserGroup> pojoTest();
-    public User findWithOrders(Integer id);
-    public User findWithOrders2(Integer id);
-    public SelectUserWithOrders findWithOrders3(Integer id);
-    public List<UserWithOrders> findWithOrders4(Integer id);
+    List<User> byName(String name);
+    List<Map<String, Object>> mapTest();
+    List<UserGroup> pojoTest();
+    User findWithOrders(Integer id);
+    User findWithOrders2(Integer id);
+    SelectUserWithOrders findWithOrders3(Integer id);
+    List<UserWithOrders> findWithOrders4(Integer id);
 }

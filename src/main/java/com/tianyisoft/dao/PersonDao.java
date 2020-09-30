@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface PersonDao {
-    public Person findById(Integer id);
-    public Person findById2(Integer id);
-    public SelectPersonById findById3(Integer id);
+    Person findById(Integer id);
+    Person findById2(Integer id);
+    SelectPersonById findById3(Integer id);
 }

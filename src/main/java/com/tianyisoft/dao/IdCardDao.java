@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface IdCardDao {
-    public IdCard findById(Integer id);
+    IdCard findById(Integer id);
 }
