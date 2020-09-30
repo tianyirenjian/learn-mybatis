@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tianyisoft.dao.TreeDao">
+    <select id="findById" resultType="com.tianyisoft.po.Tree">
+        select * from tree where id = #{id}
+    </select>
+    <resultMap id="treeWithParent" type="com.tianyisoft.po.Tree">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="pid" column="pid"/>
+        <association property="parent" column="pid" javaType="com.tianyisoft.po.Tree" select="getTreeWithParent">
+
+        </association>
+    </resultMap>
+    <select id="getTreeWithParent" resultMap="treeWithParent">
+        select * from tree where id = #{id}
+    </select>
+
+    <resultMap id="treeWithChildren" type="com.tianyisoft.po.Tree">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="pid" column="pid"/>
+        <collection property="children" ofType="com.tianyisoft.po.Tree" column="id" select="getChildrenOf">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="pid" column="pid"/>
+        </collection>
+    </resultMap>
+    <select id="getTreeWithChildren" resultMap="treeWithChildren">
+        select * from tree where id = #{id}
+    </select>
+    <select id="getChildrenOf" resultMap="treeWithChildren">
+        select * from tree where pid = #{id}
+    </select>
+</mapper>

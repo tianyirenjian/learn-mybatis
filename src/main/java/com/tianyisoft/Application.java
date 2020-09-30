@@ -1,9 +1,6 @@
 package com.tianyisoft;
 
-import com.tianyisoft.controller.DynamicSqlController;
-import com.tianyisoft.controller.ManyToManyController;
-import com.tianyisoft.controller.OneToOneController;
-import com.tianyisoft.controller.UserController;
+import com.tianyisoft.controller.*;
 import com.tianyisoft.po.User;
 import com.tianyisoft.service.UserService;
 import org.springframework.context.ApplicationContext;
@@ -19,7 +16,9 @@ public class Application {
         // oto.test();
         // ManyToManyController mtm = ctx.getBean(ManyToManyController.class);
         // mtm.test();
-        DynamicSqlController dsc = ctx.getBean(DynamicSqlController.class);
-        dsc.test();
+        // DynamicSqlController dsc = ctx.getBean(DynamicSqlController.class);
+        // dsc.test();
+        InfinityTreeController itc = ctx.getBean(InfinityTreeController.class);
+        itc.test();
     }
 }
